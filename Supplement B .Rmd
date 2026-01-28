@@ -50,7 +50,7 @@ library(lattice)
 
 ```{r}
 # Reading data file
-body_data <-  read.csv("Body_11Block_Long.csv")
+body_data <-  read.csv("Study 2 Ratings Shoes_longFormat.csv")
 
 # converting to data frame
 body_data <- as.data.frame(body_data)
@@ -1876,7 +1876,7 @@ print(variance_summary)
 
 ```
 
-## **PART V: Normality Assumption Checks for Mixed-Effects Models with Nested Structure**
+## **PART V: Supplement B5: Normality Assumption Checks for Mixed-Effects Models with Nested Structure**
 
 ### 20. Function to calculate standardized residuals (Pearson residuals scaled by their standard deviation)
 
@@ -2097,15 +2097,40 @@ print_normality_results(wealth_tests)
 
 # Display plots 
 attract_plots$qq
+cat("Figure B5.1. Q-Q plot of standardized residuals for attractiveness ratings (image stimuli). 
+    Points closely following the reference line (red), 
+    indicate approximate normality of residuals.")
 attract_plots$hist
+cat("Figure B5.2. Histogram of standardized residuals for attractiveness ratings (image stimuli). 
+    Red line shows kernel density estimate; 
+    blue dashed line shows theoretical normal distribution (μ=0, σ=1).")
 attract_plots$fitted
+cat("Figure B5.3. Standardized residuals versus fitted values for attractiveness ratings (image stimuli). 
+    Red loess curve and horizontal reference line assess homoscedasticity assumption. 
+    No systematic patterns indicate appropriate model fit.")
 attract_re_plots$`Model:block_qq`
+cat("Figure B5.4. Q-Q plot of random intercepts for Model:block grouping factor (attractiveness, image stimuli). 
+    Assesses normality assumption for nested random effects structure.")
 attract_re_plots$code_qq
+cat("Figure B5.5. Q-Q plot of random intercepts for rater (code) grouping factor (attractiveness, image stimuli). 
+    Assesses normality assumption for individual rater effects.")
 wealth_plots$qq
+cat("Figure B5.6. Q-Q plot of standardized residuals for wealth perception ratings (image stimuli).
+    Points closely following the reference line (red), 
+    indicate approximate normality of residuals.")
 wealth_plots$hist
+cat("Figure B5.7. Histogram of standardized residuals for wealth perception ratings (image stimuli). 
+    Red line shows kernel density estimate; 
+    blue dashed line shows theoretical normal distribution (μ=0, σ=1).")
 wealth_plots$fitted
+cat("Figure B5.8. Standardized residuals versus fitted values for wealth perception ratings (image stimuli). 
+    Red loess curve and horizontal reference line assess homoscedasticity assumption.")
 wealth_re_plots$`Model:block_qq`
+cat("Figure B5.9. Q-Q plot of random intercepts for Model:block grouping factor (wealth, image stimuli). 
+    Assesses normality assumption for nested random effects structure.")
 wealth_re_plots$code_qq
+cat("Figure B5.10. Q-Q plot of random intercepts for rater (code) grouping factor (wealth, image stimuli). 
+    Assesses normality assumption for individual rater effects.")
 ```
 
 ### 25. Diagnostic for Boundary fits and random effects variance
@@ -2179,5 +2204,12 @@ plot_residuals_by_structure <- function(model, model_name) {
 examine_random_effects(model_attract_image, "Attractiveness")
 examine_random_effects(model_wealth_image, "Wealth")
 plot_residuals_by_structure(model_attract_image, "Attractiveness")
+cat("Figure B5.11. Standardized residuals by nested structure (Block/Model) for attractiveness ratings. 
+    Panel plot shows residual patterns across experimental blocks
+    with loess smoothing curves to detect systematic variation.")
 plot_residuals_by_structure(model_wealth_image, "Wealth")
+cat("Figure B5.12. Standardized residuals by nested structure (Block/Model) for wealth perception ratings.
+    Panel plot shows residual patterns across experimental blocks
+    with loess smoothing curves to detect systematic variation.")
+
 ```
