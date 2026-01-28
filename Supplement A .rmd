@@ -78,6 +78,9 @@ kable(missing_summary, caption = "Missing Data Summary") %>%
 VIM::aggr(df, col = c('navyblue','red'), numbers = TRUE, sortVars = TRUE)
 
 ```
+Figure A1.1. Missing data patterns for Study 1 participant demographics. Left panel shows proportion of missing values per variable; right panel shows combinations of missing data patterns.
+
+
 
 ### 4. Cleaning data
 
@@ -135,6 +138,8 @@ ggplot(df, aes(x = age)) +
            label = paste("Mean:", round(mean(df$age, na.rm = TRUE), 1)), 
            color = "red")
 ```
+Figure A1.2. Age distribution of Study 1 participants (N=60). Red dashed line indicates mean age.
+
 
 ### Sex and Gender
 ```{r}
@@ -164,6 +169,8 @@ ggplot(df, aes(x = sex, fill = sex)) +
   scale_fill_manual(values = c("Female" = "#E69F00", "Male" = "#56B4E9")) +
   theme(legend.position = "none")
 ```
+Figure A1.3. Sex distribution of Study 1 participants. All participants were biologically female (N=60).
+
 
 ### Nationality
 
@@ -185,6 +192,9 @@ ggplot(df, aes(x = reorder(nationality, -table(nationality)[nationality]))) +
   labs(title = "Nationality Distribution", x = "Nationality", y = "Count") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+Figure A1.4. Nationality distribution of Study 1 participants (N=60). Czech nationals comprised 80% of the sample.
+
+
 
 ### Education 
 ```{r}
@@ -198,6 +208,7 @@ kable(education_dist, col.names = c("Education Level", "Count", "Percentage (%)"
       caption = "Education Distribution") %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
+
 
 ### Sexual Orientation
 ```{r}
@@ -224,6 +235,8 @@ ggplot(df_filtered, aes(x = reorder(sexual_orientation,
        x = "Sexual Orientation", y = "Count") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+Figure A1.5. Sexual orientation distribution of Study 1 participants (N=60). Majority identified as heterosexual (70%).
+
 
 ### Relationship Status
 ```{r}
@@ -261,6 +274,8 @@ ggplot(df, aes(x = reorder(municipality, -table(municipality)[municipality]))) +
        x = "Municipality Type", y = "Count") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+Figure A1.6. Municipality type distribution of Study 1 participants (N=60). Most participants resided in cities over 100,000 inhabitants (66.7%).
+
 
 ### Income
 
@@ -386,6 +401,9 @@ kable(missing_summary, caption = "Missing Data Summary") %>%
 # Visualize missing data pattern
 VIM::aggr(df, col = c('navyblue','red'), numbers = TRUE, sortVars = TRUE)
 ```
+Figure A2.1. Missing data patterns for Study 2 participant demographics. Left panel shows proportion of missing values per variable; right panel shows combinations of missing data patterns (N=279).
+
+
 
 ### 11. Data Quality Assessment
 
@@ -436,6 +454,7 @@ ggplot(df, aes(x = age_clean)) +
            label = paste("Mean:", round(mean(df$age_clean), 1)), color = "red")
 
 ```
+Figure A2.2. Age distribution of Study 2 participants (N=279). Red dashed line indicates mean age (M=22.7 years, SD=3.71).
 
 ### Sex and Gender 
 
@@ -466,6 +485,8 @@ ggplot(df, aes(x = sex_clean, fill = sex_clean)) +
   scale_fill_manual(values = c("Female" = "#E69F00", "Male" = "#56B4E9")) +
   theme(legend.position = "none")
 ```
+Figure A2.3. Gender distribution of Study 2 participants (N=279). Sample included 177 females (63.4%) and 102 males (36.6%).
+
 
 ### Nationality 
 
@@ -487,6 +508,8 @@ ggplot(df, aes(x = reorder(Nationality, -table(Nationality)[Nationality]))) +
   labs(title = "Nationality Distribution", x = "Nationality", y = "Count") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+Figure A2.4. Nationality distribution of Study 2 participants (N=279). Czech nationals comprised 84.9% of the sample.
+
 
 ### Education
 
@@ -524,6 +547,8 @@ ggplot(df, aes(x = reorder(sexualorientation, -table(sexualorientation)[sexualor
        x = "Sexual Orientation", y = "Count") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+Figure A2.5. Sexual orientation distribution of Study 2 participants (N=279). Majority identified as exclusively heterosexual (51.3%) or predominantly heterosexual (26.9%).
+
 
 ### Partnership Status
 
@@ -617,6 +642,8 @@ ggplot(df, aes(x = reorder(residence, -table(residence)[residence]))) +
        x = "Residence Type", y = "Count") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+Figure A2.6. Residence type distribution of Study 2 participants (N=279). Most participants resided in large cities over 100,000 inhabitants (65.2%).
+
 
 ### Income
 
@@ -665,6 +692,8 @@ ggplot(df, aes(x = duration_minutes)) +
   annotate("text", x = mean(df$duration_minutes) + 10, y = 20, 
            label = paste("Mean:", round(mean(df$duration_minutes), 1), "min"), color = "red")
 ```
+Figure A2.7. Survey completion time distribution for Study 2 participants (N=279). Red dashed line indicates mean duration (M=43.4 minutes, SD=29.74).
+
 
 ### 14. Block Analysis
 
