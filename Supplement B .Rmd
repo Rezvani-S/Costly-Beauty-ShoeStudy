@@ -44,6 +44,7 @@ library(grid)
 library(insight)
 library(car)
 library(lattice)
+library(tidyr)
 ```
 
 ## 2. Data Import and Preparation
@@ -1743,6 +1744,68 @@ ggsave("effect_sizes_comparison.png",
       width = 14, height = 10, dpi = 300, bg = "white")
 ```
 Figure B4.4. Cohen's d effect sizes (absolute values) for cost and trait exaggeration main effects across all models. Dashed reference lines indicate small (0.22), medium (0.39), and large (0.60) effect size thresholds.For Effect Size Interpretation Guidelines see Supplement Section A3.
+
+```{r}
+# Reshape data for combined plot
+main_effects_long <- main_effects_es %>%
+  select(Model, Effect, Cohens_d, Partial_Eta_Sq, ES_Category) %>%
+  pivot_longer(
+    cols = c(Cohens_d, Partial_Eta_Sq),
+    names_to = "Metric",
+    values_to = "Value"
+  ) %>%
+  mutate(
+    Metric = factor(Metric, 
+                   levels = c("Cohens_d", "Partial_Eta_Sq"),
+                   labels = c("Cohen's d", "Partial η²")),
+    Value_abs = ifelse(Metric == "Cohen's d", abs(Value), Value)
+  )
+
+# Create separate data frames for annotations
+annotations_d <- data.frame(
+  Metric = "Cohen's d",
+  yint = c(0.22, 0.39, 0.60),
+  label = c("Small", "Medium", "Large")
+)
+
+annotations_eta <- data.frame(
+  Metric = "Partial η²",
+  yint = c(0.012, 0.037, 0.082),
+  label = c("Small", "Medium", "Large")
+)
+
+annotations_all <- rbind(annotations_d, annotations_eta)
+
+# Combined plot with proper free scales
+p_combined <- ggplot(main_effects_long, aes(x = Model, y = Value_abs, fill = Effect)) +
+  geom_col(position = position_dodge(0.8), width = 0.7, color = "black") +
+  facet_wrap(~ Metric, scales = "free_y") +
+  geom_hline(data = annotations_all,
+             aes(yintercept = yint), 
+             linetype = "dashed", color = "red", alpha = 0.5) +
+  geom_text(data = annotations_all,
+            aes(x = 0.5, y = yint, label = label),
+            hjust = 0, size = 3, color = "red", inherit.aes = FALSE) +
+  scale_fill_manual(values = c("Trait Exaggeration" = "#1F77B4", 
+                               "Cost" = "#FF7F0E"),
+                    name = "Effect Type") +
+  labs(title = "Effect Sizes by Model and Metric",
+       y = "Effect Size",
+       x = "Model") +
+  theme_minimal(base_size = 12) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "top",
+    panel.border = element_rect(color = "black", fill = NA),
+    strip.background = element_rect(fill = "grey90", color = "black"),
+    strip.text = element_text(face = "bold")
+  )
+
+print(p_combined)
+```
+
+Figure B4.5. Effect sizes for main effects across all 2×2 factorial models, shown as Cohen's d (left panel) and partial eta-squared (η²; right panel). Dashed reference lines indicate small, medium, and large effect size thresholds for each metric (d: 0.22, 0.39, 0.60; η²: 0.012, 0.037, 0.082). For Effect Size Interpretation Guidelines see Supplement Section A3.
+```
 
 
 ## 18.  Variance Components Analysis
