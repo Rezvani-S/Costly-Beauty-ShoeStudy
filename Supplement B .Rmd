@@ -2594,7 +2594,7 @@ plot_attract_trait <- create_power_plot(
   "Trait Exaggeration",
   "Attractiveness",
   fixef(model_attract_factorial_image)["Trait_Exaggeration1"],
-  "/home/claude/power_curve_attractiveness_trait.png"
+  "power_curve_attractiveness_trait.png"
 )
 
 plot_attract_cost <- create_power_plot(
@@ -2602,7 +2602,7 @@ plot_attract_cost <- create_power_plot(
   "Cost",
   "Attractiveness",
   fixef(model_attract_factorial_image)["Cost1"],
-  "/home/claude/power_curve_attractiveness_cost.png"
+  "power_curve_attractiveness_cost.png"
 )
 
 plot_wealth_trait <- create_power_plot(
@@ -2610,7 +2610,7 @@ plot_wealth_trait <- create_power_plot(
   "Trait Exaggeration",
   "Wealth",
   fixef(model_wealth_factorial_image)["Trait_Exaggeration1"],
-  "/home/claude/power_curve_wealth_trait.png"
+  "power_curve_wealth_trait.png"
 )
 
 plot_wealth_cost <- create_power_plot(
@@ -2618,7 +2618,7 @@ plot_wealth_cost <- create_power_plot(
   "Cost",
   "Wealth",
   fixef(model_wealth_factorial_image)["Cost1"],
-  "/home/claude/power_curve_wealth_cost.png"
+  "power_curve_wealth_cost.png"
 )
 
 
